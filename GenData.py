@@ -10,8 +10,10 @@ from ROOT import *
 
 def main():
 
-    genTypes=["sig","bkg"]
+    #genTypes=["sig","bkg"]
     #genTypes=["sig"]
+    
+    genTypes=["mixed"]
     
     NEvents=10000
 
@@ -48,6 +50,12 @@ def main():
                     fEval = PDF_Background(xTest,yTest,zTest)
                 elif type=="sig":
                     fEval = PDF_Signal(xTest,yTest,zTest)
+                elif type=="mixed":
+                    typeRand = random.random()
+                    if typeRand>0.73:
+                        fEval = PDF_Background(xTest,yTest,zTest)
+                    else:
+                        fEval = PDF_Signal(xTest,yTest,zTest)
                 else:
                     print "Not a valid data type ---"
             
